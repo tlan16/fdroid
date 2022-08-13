@@ -19,10 +19,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: suisei-cn/actions-download-file@v1.0.1
-        id: download-apk  # Remember to give an ID if you need the output
-        name: Download apks
+        id: download-apk-vanced-microG
+        name: Download vanced-microG.apk
         with:
           url: "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
+          target: fdroid/repo/
+          auto-match: false
+      - uses: suisei-cn/actions-download-file@v1.0.1
+        id: download-apk-revanced-nonroot
+        name: Download revanced-nonroot.apk
+        with:
+          url: "https://github.com/tlan16/revanced-build/releases/download/latest/revanced-nonroot.apk"
           target: fdroid/repo/
           auto-match: false
       - name: build docker image
