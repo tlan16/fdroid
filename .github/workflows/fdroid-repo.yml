@@ -3,8 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-  schedule: # Every Melbourne midnight
-    - cron: "0 14 * * *"
+  schedule: # Every hour
+    - cron: "0 * * * *"
 
 jobs:
   build-and-publish:
@@ -23,13 +23,13 @@ jobs:
           mkdir -p ./dist
           touch ./dist/apks.txt
           ./download-apks.sh
-      - name: build docker image
+      - name: Build docker image
         run: |
           docker-compose build
-      - name: update metadata
+      - name: Update metadata
         run: |
           docker-compose run fdroid update --create-metadata
-      - name: deploy fdroid repo
+      - name: Deploy fdroid repo
         run: |
           docker-compose run fdroid deploy -v
       - name: Setup Pages Static Files
@@ -37,8 +37,8 @@ jobs:
           # Redirect
           sudo cp ./static/redirect.html ./dist/fdroid/index.html
           # Indexes
-          sudo apt-get --quiet update
-          sudo apt-get --quiet install -y ansilove
+          sudo apt-get --quiet update &> /dev/null
+          sudo apt-get --quiet install -y ansilove &> /dev/null
           sudo bash -c "ls dist/fdroid/repo/*.apk | tr '\n' '\0' | xargs -0 -n 1 basename > ./dist/fdroid/index.txt"
           sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
       - name: Setup Pages
