@@ -52,7 +52,7 @@ parallel \
   sh -c ::: \
   "curl -L $VancedMicroGUrl -o fdroid/repo/Vanced_MicroG.apk" \
   "curl -L $RevancedNonRootUrl -o fdroid/repo/Revanced_Nonroot.apk" \
-  "curl -L $FairMailUrl -o fdroid/repo/Failmail.apk" \
+  "curl -L $FairMailUrl -o fdroid/repo/Fair_Mail.apk" \
   "curl -L $AnyWebViewUrl -o fdroid/repo/Any_Web_View.apk" \
   "curl -L $AppSettingsRebornUrl -o fdroid/repo/App_Settings_Reborn.apk" \
   "curl -L $PixelifyGooglePhotosUrl -o fdroid/repo/Pixelify_Google_Photos.apk" \
