@@ -9,3 +9,5 @@ keydname: CN=168be2a2cf90, OU=F-Droid
 local_copy_dir: /dist/fdroid
 repo_url: https://tlan16.github.io/fdroid/repo
 repo_name: Frank's F-Droid Repo
+keyaliases:
+  eu.faircode.email: "au.faircode.email"
