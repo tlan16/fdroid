@@ -18,26 +18,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v2
-#      - uses: suisei-cn/actions-download-file@v1.0.1
-#        id: download-apk-vanced-microG
-#        name: Download Vanced MicroG
-#        with:
-#          url: "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
-#          target: fdroid/repo/
-#          auto-match: false
-      - name: Download Vanced MicroG
+      - name: Download apks
         run: |
-          curl -L "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk" > fdroid/repo/vanced-microG.apk
-      - uses: suisei-cn/actions-download-file@v1.0.1
-        id: download-apk-revanced-nonroot
-        name: Download Revanced nonroot
-        with:
-          url: "https://github.com/tlan16/revanced-build/releases/download/latest/revanced-nonroot.apk"
-          target: fdroid/repo/
-          auto-match: false
-      - name: Download Failmail
-        run: |
-          curl -L $(curl -s https://api.github.com/repos/M66B/FairEmail/releases/latest | grep browser_ | cut -d\" -f4) > fdroid/repo/Failmail.apk
+          mkdir -p fdroid/repo
+          curl -L "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk" -o fdroid/repo/vanced-microG.apk
+          curl -L "https://github.com/tlan16/revanced-build/releases/download/latest/revanced-nonroot.apk" -o fdroid/repo/revanced-nonroot.apk
+          curl -L $(curl -s https://api.github.com/repos/M66B/FairEmail/releases/latest | grep browser_ | cut -d\" -f4) -o fdroid/repo/Failmail.apk
       - name: build docker image
         run: |
           docker-compose build

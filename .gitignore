@@ -1,6 +1,9 @@
 /.idea/
 /fdroid/tmp/
 /dist/
-/fdroid/repo/
+/fdroid/repo
 !/fdroid/repo/icons/
 /fdroid/metadata/
+
+# Except .gitkepp files
+!/fdroid/repo/.gitkeep
