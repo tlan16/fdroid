@@ -19,7 +19,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Download apks
-        run: ./download-apks.sh
+        run: |
+          mkdir -p ./dist
+          touch ./dist/apks.txt
+          ./download-apks.sh
       - name: build docker image
         run: |
           docker-compose build
@@ -31,7 +34,13 @@ jobs:
           docker-compose run fdroid deploy -v
       - name: Setup Pages Static Files
         run: |
+          # Redirect
           sudo cp ./static/redirect.html ./dist/fdroid/index.html
+          # Indexes
+          sudo apt-get --quiet update
+          sudo apt-get --quiet install -y ansilove
+          sudo bash -c "ls dist/fdroid/repo/*.apk | tr '\n' '\0' | xargs -0 -n 1 basename > ./dist/fdroid/index.txt"
+          sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
       - name: Setup Pages
         uses: actions/configure-pages@v1
       - name: Upload artifact
