@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  build:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    working_dir: /fdroid
+    volumes:
+      - ./fdroid:/fdroid
+      - ./dist:/dist
