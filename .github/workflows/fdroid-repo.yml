@@ -20,18 +20,21 @@ jobs:
       - uses: actions/checkout@v2
       - uses: suisei-cn/actions-download-file@v1.0.1
         id: download-apk-vanced-microG
-        name: Download vanced-microG.apk
+        name: Download Vanced MicroG
         with:
           url: "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
           target: fdroid/repo/
           auto-match: false
       - uses: suisei-cn/actions-download-file@v1.0.1
         id: download-apk-revanced-nonroot
-        name: Download revanced-nonroot.apk
+        name: Download Revanced nonroot
         with:
           url: "https://github.com/tlan16/revanced-build/releases/download/latest/revanced-nonroot.apk"
           target: fdroid/repo/
           auto-match: false
+      - name: Download Failmail
+        run: |
+          curl -L $(curl -s https://api.github.com/repos/M66B/FairEmail/releases/latest | grep browser_ | cut -d\" -f4) > fdroid/repo/Failmail.apk
       - name: build docker image
         run: |
           docker-compose build
