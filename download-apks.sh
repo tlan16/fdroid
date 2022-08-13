@@ -41,6 +41,9 @@ echo "XposedSmsCodeUrl: $XposedSmsCodeUrl"
 ZhiLiaoUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.shatyuka.zhiliao")
 echo "ZhiLiaoUrl: $ZhiLiaoUrl"
 
+BilibiliChinaUrl="https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk"
+echo "BilibiliChinaUrl: $BilibiliChinaUrl"
+
 # Download
 parallel \
   --jobs 8 \
@@ -55,7 +58,8 @@ parallel \
   "curl -L $PixelifyGooglePhotosUrl -o fdroid/repo/Pixelify_Google_Photos.apk" \
   "curl -L $WechatXUrl -o fdroid/repo/WechatX.apk" \
   "curl -L $XposedSmsCodeUrl -o fdroid/repo/Xposed_SMS_Code.apk" \
-  "curl -L $ZhiLiaoUrl -o fdroid/repo/Zhi_Liao.apk"
+  "curl -L $ZhiLiaoUrl -o fdroid/repo/Zhi_Liao.apk" \
+  "curl -L $BilibiliChinaUrl -o fdroid/repo/Bilibili_China.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
