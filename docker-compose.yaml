@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
       context: .
     working_dir: /fdroid
+    environment:
+      - FDROID_REPO=fdroid/repo
     volumes:
       - ./fdroid:/fdroid
       - ./dist:/dist

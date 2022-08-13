@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule: # Every Melbourne midnight
+    - cron: "0 14 * * *"
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: suisei-cn/actions-download-file@v1.0.1
+        id: download-apk  # Remember to give an ID if you need the output
+        name: Download apks
+        with:
+          url: "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
+          target: fdroid/repo/
+          auto-match: false
+      - name: build docker image
+        run: |
+          docker-compose build
+      - name: update metadata
+        run: |
+          docker-compose run fdroid update --create-metadata
+      - name: deploy fdroid repo
+        run: |
+          docker-compose run fdroid deploy -v
