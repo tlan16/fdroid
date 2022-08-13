@@ -9,6 +9,13 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v2
       - uses: suisei-cn/actions-download-file@v1.0.1
@@ -27,3 +34,12 @@ jobs:
       - name: deploy fdroid repo
         run: |
           docker-compose run fdroid deploy -v
+      - name: Setup Pages
+        uses: actions/configure-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './dist/fdroid'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
