@@ -2,4 +2,5 @@
 /fdroid/tmp/
 /dist/
 /fdroid/repo/
+!/fdroid/repo/icons/
 /fdroid/metadata/
