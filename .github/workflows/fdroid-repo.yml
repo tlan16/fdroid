@@ -18,13 +18,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v2
-      - uses: suisei-cn/actions-download-file@v1.0.1
-        id: download-apk-vanced-microG
-        name: Download Vanced MicroG
-        with:
-          url: "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
-          target: fdroid/repo/
-          auto-match: false
+#      - uses: suisei-cn/actions-download-file@v1.0.1
+#        id: download-apk-vanced-microG
+#        name: Download Vanced MicroG
+#        with:
+#          url: "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
+#          target: fdroid/repo/
+#          auto-match: false
+      - name: Download Vanced MicroG
+        run: |
+          curl -L "https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk" > fdroid/repo/vanced-microG.apk
       - uses: suisei-cn/actions-download-file@v1.0.1
         id: download-apk-revanced-nonroot
         name: Download Revanced nonroot
