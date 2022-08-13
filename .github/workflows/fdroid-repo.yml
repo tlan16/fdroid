@@ -34,7 +34,7 @@ jobs:
           docker-compose run fdroid deploy -v
       - name: Setup Pages Static Files
         run: |
-          cp ./static/redirect.html ./dist/fdroid/index.html
+          sudo cp ./static/redirect.html ./dist/fdroid/index.html
       - name: Setup Pages
         uses: actions/configure-pages@v1
       - name: Upload artifact
