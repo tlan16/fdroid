@@ -53,6 +53,9 @@ echo "WechatXUrl: $WechatXUrl"
 XposedSmsCodeUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.github.tianma8023.xposed.smscode")
 echo "XposedSmsCodeUrl: $XposedSmsCodeUrl"
 
+BiliRoamingUrl=$(getReleaseUrl "Xposed-Modules-Repo" "me.iacn.biliroaming")
+echo "BiliRoamingUrl: $BiliRoamingUrl"
+
 ZhiLiaoUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.shatyuka.zhiliao")
 echo "ZhiLiaoUrl: $ZhiLiaoUrl"
 
@@ -79,6 +82,7 @@ parallel \
   "curl -L $PixelifyGooglePhotosUrl -o fdroid/repo/Pixelify_Google_Photos.apk" \
   "curl -L $WechatXUrl -o fdroid/repo/WechatX.apk" \
   "curl -L $XposedSmsCodeUrl -o fdroid/repo/Xposed_SMS_Code.apk" \
+  "curl -L $BiliRoamingUrl -o fdroid/repo/Bili_Roaming.apk" \
   "curl -L $ZhiLiaoUrl -o fdroid/repo/Zhi_Liao.apk" \
   "curl -L $BilibiliChinaUrl -o fdroid/repo/Bilibili_China.apk" \
   "curl -L $BaiduUrl -o fdroid/repo/Baidu.apk" \
