@@ -68,6 +68,9 @@ echo "BaiduUrl: $BaiduUrl"
 BromiteWebViewUrl=$(getBromiteWebViewUrl)
 echo "BromiteWebViewUrl: $BromiteWebViewUrl"
 
+ChineseConsulateUrl="https://app-download-1301220764.cos.ap-beijing.myqcloud.com/com.gov.mfa.release.apk"
+echo "ChineseConsulateUrl: $ChineseConsulateUrl"
+
 # Download
 parallel \
   --jobs 8 \
@@ -86,7 +89,8 @@ parallel \
   "curl -L $ZhiLiaoUrl -o fdroid/repo/Zhi_Liao.apk" \
   "curl -L $BilibiliChinaUrl -o fdroid/repo/Bilibili_China.apk" \
   "curl -L $BaiduUrl -o fdroid/repo/Baidu.apk" \
-  "curl -L $BromiteWebViewUrl -o fdroid/repo/Bromite_WebView.apk"
+  "curl -L $BromiteWebViewUrl -o fdroid/repo/Bromite_WebView.apk" \
+  "curl -L $ChineseConsulateUrl -o fdroid/repo/Chinese_Consulate.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
