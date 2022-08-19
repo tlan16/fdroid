@@ -47,8 +47,9 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: './dist/fdroid'
+          retention-days: 1
       - name: List artifacts
-        run: tree -h ./dist/fdroid
+        run: tree -a -h ./dist/fdroid
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
