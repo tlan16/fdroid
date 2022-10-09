@@ -71,6 +71,9 @@ echo "BromiteWebViewUrl: $BromiteWebViewUrl"
 ChineseConsulateUrl="https://app-download-1301220764.cos.ap-beijing.myqcloud.com/com.gov.mfa.release.apk"
 echo "ChineseConsulateUrl: $ChineseConsulateUrl"
 
+ALHZUrl="https://docs.zohopublic.com.cn/downloaddocument.do?docId=d03xdf34a46d3c9d342ce892acbdb89637006&docExtn=apk"
+echo "艾利浩斯Url: $ALHZUrl"
+
 # Download
 parallel \
   --jobs 8 \
@@ -90,7 +93,8 @@ parallel \
   "curl -L $BilibiliChinaUrl -o fdroid/repo/Bilibili_China.apk" \
   "curl -L $BaiduUrl -o fdroid/repo/Baidu.apk" \
   "curl -L $BromiteWebViewUrl -o fdroid/repo/Bromite_WebView.apk" \
-  "curl -L $ChineseConsulateUrl -o fdroid/repo/Chinese_Consulate.apk"
+  "curl -L $ChineseConsulateUrl -o fdroid/repo/Chinese_Consulate.apk" \
+  "curl -L $ALHZUrl -o fdroid/repo/alhz.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
