@@ -81,21 +81,21 @@ parallel \
   --keep-order \
   --line-buffer \
   sh -c ::: \
-  "curl --silent --location $VancedMicroGUrl -o fdroid/repo/Vanced_MicroG.apk" \
-  "curl --silent --location $RevancedNonRootUrl -o fdroid/repo/Revanced_Nonroot.apk" \
-  "curl --silent --location $FairMailUrl -o fdroid/repo/Fair_Mail.apk" \
-  "curl --silent --location $AnyWebViewUrl -o fdroid/repo/Any_Web_View.apk" \
-  "curl --silent --location $AppSettingsRebornUrl -o fdroid/repo/App_Settings_Reborn.apk" \
-  "curl --silent --location $PixelifyGooglePhotosUrl -o fdroid/repo/Pixelify_Google_Photos.apk" \
-  "curl --silent --location $WechatXUrl -o fdroid/repo/WechatX.apk" \
-  "curl --silent --location $XposedSmsCodeUrl -o fdroid/repo/Xposed_SMS_Code.apk" \
-  "curl --silent --location $BiliRoamingUrl -o fdroid/repo/Bili_Roaming.apk" \
-  "curl --silent --location $ZhiLiaoUrl -o fdroid/repo/Zhi_Liao.apk" \
-  "curl --silent --location $BilibiliChinaUrl -o fdroid/repo/Bilibili_China.apk" \
-  "curl --silent --location $BaiduUrl -o fdroid/repo/Baidu.apk" \
-  "curl --silent --location $BromiteWebViewUrl -o fdroid/repo/Bromite_WebView.apk" \
-  "curl --silent --location $ChineseConsulateUrl -o fdroid/repo/Chinese_Consulate.apk" \
-  "curl --silent --location $ALHZUrl -o fdroid/repo/alhz.apk"
+  "curl --silent --location $VancedMicroGUrl --output fdroid/repo/Vanced_MicroG.apk" \
+  "curl --silent --location $RevancedNonRootUrl --output fdroid/repo/Revanced_Nonroot.apk" \
+  "curl --silent --location $FairMailUrl --output fdroid/repo/Fair_Mail.apk" \
+  "curl --silent --location $AnyWebViewUrl --output fdroid/repo/Any_Web_View.apk" \
+  "curl --silent --location $AppSettingsRebornUrl --output fdroid/repo/App_Settings_Reborn.apk" \
+  "curl --silent --location $PixelifyGooglePhotosUrl --output fdroid/repo/Pixelify_Google_Photos.apk" \
+  "curl --silent --location $WechatXUrl --output fdroid/repo/WechatX.apk" \
+  "curl --silent --location $XposedSmsCodeUrl --output fdroid/repo/Xposed_SMS_Code.apk" \
+  "curl --silent --location $BiliRoamingUrl --output fdroid/repo/Bili_Roaming.apk" \
+  "curl --silent --location $ZhiLiaoUrl --output fdroid/repo/Zhi_Liao.apk" \
+  "curl --silent --location $BilibiliChinaUrl --output fdroid/repo/Bilibili_China.apk" \
+  "curl --silent --location $BaiduUrl --output fdroid/repo/Baidu.apk" \
+  "curl --silent --location $BromiteWebViewUrl --output fdroid/repo/Bromite_WebView.apk" \
+  "curl --silent --location $ChineseConsulateUrl --output fdroid/repo/Chinese_Consulate.apk" \
+  "curl --silent --location $ALHZUrl --output fdroid/repo/alhz.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
