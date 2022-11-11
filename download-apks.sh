@@ -71,7 +71,7 @@ echo "BromiteWebViewUrl: $BromiteWebViewUrl"
 ChineseConsulateUrl="https://app-download-1301220764.cos.ap-beijing.myqcloud.com/com.gov.mfa.release.apk"
 echo "ChineseConsulateUrl: $ChineseConsulateUrl"
 
-ALHZUrl="https://docs.zohopublic.com.cn/downloaddocument.do?docId=d03xdf34a46d3c9d342ce892acbdb89637006&docExtn=apk"
+ALHZUrl="$(curl --silent https://alhs.live/ | grep --perl-regexp --only-matching '(?<=<script>var info=).+(?=;var)' | jq '.link | map(select(.name | contains("APP"))) | first | .target')"
 echo "艾利浩斯Url: $ALHZUrl"
 
 # Download
