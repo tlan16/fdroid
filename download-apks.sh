@@ -71,31 +71,32 @@ echo "BromiteWebViewUrl: $BromiteWebViewUrl"
 ChineseConsulateUrl="https://app-download-1301220764.cos.ap-beijing.myqcloud.com/com.gov.mfa.release.apk"
 echo "ChineseConsulateUrl: $ChineseConsulateUrl"
 
-ALHZDocId="$(curl --silent https://alhs.live/ | grep --perl-regexp --only-matching '(?<=<script>var info=).+(?=;var)' | jq '.link | map(select(.name | contains("APP"))) | first | .target' | grep --perl-regexp --only-matching '(?<=file\/)[^"]+')"
+ALHZDocId="$(curl --silent https://alhs.live/ | "$(getGrepBin)" --perl-regexp --only-matching '(?<=<script>var info=).+(?=;var)' | jq '.link | map(select(.name | contains("APP"))) | first | .target' | "$(getGrepBin)" --perl-regexp --only-matching '(?<=file\/)[^"]+')"
 ALHZUrl="https://docs.zohopublic.com.cn/downloaddocument.do?docId=$ALHZDocId&docExtn=apk"
 echo "艾利浩斯Url: $ALHZUrl"
 
 # Download
+echo "Downloading APKs..."
 parallel \
   --jobs 8 \
   --keep-order \
   --line-buffer \
   sh -c ::: \
-  "curl --silent --location $VancedMicroGUrl --output fdroid/repo/Vanced_MicroG.apk" \
-  "curl --silent --location $RevancedNonRootUrl --output fdroid/repo/Revanced_Nonroot.apk" \
-  "curl --silent --location $FairMailUrl --output fdroid/repo/Fair_Mail.apk" \
-  "curl --silent --location $AnyWebViewUrl --output fdroid/repo/Any_Web_View.apk" \
-  "curl --silent --location $AppSettingsRebornUrl --output fdroid/repo/App_Settings_Reborn.apk" \
-  "curl --silent --location $PixelifyGooglePhotosUrl --output fdroid/repo/Pixelify_Google_Photos.apk" \
-  "curl --silent --location $WechatXUrl --output fdroid/repo/WechatX.apk" \
-  "curl --silent --location $XposedSmsCodeUrl --output fdroid/repo/Xposed_SMS_Code.apk" \
-  "curl --silent --location $BiliRoamingUrl --output fdroid/repo/Bili_Roaming.apk" \
-  "curl --silent --location $ZhiLiaoUrl --output fdroid/repo/Zhi_Liao.apk" \
-  "curl --silent --location $BilibiliChinaUrl --output fdroid/repo/Bilibili_China.apk" \
-  "curl --silent --location $BaiduUrl --output fdroid/repo/Baidu.apk" \
-  "curl --silent --location $BromiteWebViewUrl --output fdroid/repo/Bromite_WebView.apk" \
-  "curl --silent --location $ChineseConsulateUrl --output fdroid/repo/Chinese_Consulate.apk" \
-  "curl --silent --location $ALHZUrl --output fdroid/repo/alhz.apk"
+  "curl --silent --location \"$VancedMicroGUrl\" --output fdroid/repo/Vanced_MicroG.apk" \
+  "curl --silent --location \"$RevancedNonRootUrl\" --output fdroid/repo/Revanced_Nonroot.apk" \
+  "curl --silent --location \"$FairMailUrl\" --output fdroid/repo/Fair_Mail.apk" \
+  "curl --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
+  "curl --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
+  "curl --silent --location \"$PixelifyGooglePhotosUrl\" --output fdroid/repo/Pixelify_Google_Photos.apk" \
+  "curl --silent --location \"$WechatXUrl\" --output fdroid/repo/WechatX.apk" \
+  "curl --silent --location \"$XposedSmsCodeUrl\" --output fdroid/repo/Xposed_SMS_Code.apk" \
+  "curl --silent --location \"$BiliRoamingUrl\" --output fdroid/repo/Bili_Roaming.apk" \
+  "curl --silent --location \"$ZhiLiaoUrl\" --output fdroid/repo/Zhi_Liao.apk" \
+  "curl --silent --location \"$BilibiliChinaUrl\" --output fdroid/repo/Bilibili_China.apk" \
+  "curl --silent --location \"$BaiduUrl\" --output fdroid/repo/Baidu.apk" \
+  "curl --silent --location \"$BromiteWebViewUrl\" --output fdroid/repo/Bromite_WebView.apk" \
+  "curl --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
+  "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
