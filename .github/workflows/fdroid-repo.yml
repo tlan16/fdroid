@@ -41,6 +41,7 @@ jobs:
           sudo apt-get --quiet install -y ansilove &> /dev/null
           sudo bash -c "ls dist/fdroid/repo/*.apk | tr '\n' '\0' | xargs -0 -n 1 basename > ./dist/fdroid/index.txt"
           sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
+          cat ./dist/fdroid/index.txt
       - name: Setup Pages
         uses: actions/configure-pages@v1
       - name: Upload artifact
