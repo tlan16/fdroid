@@ -75,6 +75,9 @@ ALHZDocId="$(curl --silent https://alhs.live/ | "$(getGrepBin)" --perl-regexp --
 ALHZUrl="https://docs.zohopublic.com.cn/downloaddocument.do?docId=$ALHZDocId&docExtn=apk"
 echo "艾利浩斯Url: $ALHZUrl"
 
+DeepSleepUrl=$(getReleaseUrl "Jasper-1024" "DeepSleep")
+echo "DeepSleepUrl: $DeepSleepUrl"
+
 # Download
 echo "Downloading APKs..."
 parallel \
@@ -96,7 +99,8 @@ parallel \
   "curl --silent --location \"$BaiduUrl\" --output fdroid/repo/Baidu.apk" \
   "curl --silent --location \"$BromiteWebViewUrl\" --output fdroid/repo/Bromite_WebView.apk" \
   "curl --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
-  "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk"
+  "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk" \
+  "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
