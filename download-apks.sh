@@ -78,6 +78,9 @@ echo "艾利浩斯Url: $ALHZUrl"
 DeepSleepUrl=$(getReleaseUrl "Jasper-1024" "DeepSleep")
 echo "DeepSleepUrl: $DeepSleepUrl"
 
+AndroidFakerUrl=$(getReleaseUrl "Android1500" "AndroidFaker")
+echo "AndroidFakerUrl: $AndroidFakerUrl"
+
 # Download
 echo "Downloading APKs..."
 parallel \
@@ -100,7 +103,8 @@ parallel \
   "curl --silent --location \"$BromiteWebViewUrl\" --output fdroid/repo/Bromite_WebView.apk" \
   "curl --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
   "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk" \
-  "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk"
+  "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk" \
+  "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
