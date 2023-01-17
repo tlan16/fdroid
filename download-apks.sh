@@ -32,8 +32,11 @@ getBromiteWebViewUrl() {
 VancedMicroGUrl="https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
 echo "VancedMicroGUrl: $VancedMicroGUrl"
 
-RevancedNonRootUrl="https://github.com/tlan16/revanced-build/releases/download/latest/revanced-nonroot.apk"
-echo "RevancedNonRootUrl: $RevancedNonRootUrl"
+YoutubeURL="https://github.com/tlan16/revanced-build/releases/download/latest/revanced-nonroot.apk"
+echo "YoutubeURL: $YoutubeURL"
+
+YoutubeMusicURL="https://github.com/tlan16/revanced-build/releases/download/latest/revanced-music-nonroot.apk"
+echo "YoutubeMusicURL: $YoutubeMusicURL"
 
 FairMailUrl=$(getReleaseUrl "M66B" "FairEmail")
 echo "FairMailUrl: $FairMailUrl"
@@ -89,7 +92,8 @@ parallel \
   --line-buffer \
   sh -c ::: \
   "curl --silent --location \"$VancedMicroGUrl\" --output fdroid/repo/Vanced_MicroG.apk" \
-  "curl --silent --location \"$RevancedNonRootUrl\" --output fdroid/repo/Revanced_Nonroot.apk" \
+  "curl --silent --location \"$YoutubeURL\" --output fdroid/repo/Youtube_Revanced.apk" \
+  "curl --silent --location \"$YoutubeMusicURL\" --output fdroid/repo/YT_Music_Revanced.apk" \
   "curl --silent --location \"$FairMailUrl\" --output fdroid/repo/Fair_Mail.apk" \
   "curl --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
   "curl --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
