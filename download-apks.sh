@@ -84,6 +84,9 @@ echo "DeepSleepUrl: $DeepSleepUrl"
 AndroidFakerUrl=$(getReleaseUrl "Android1500" "AndroidFaker")
 echo "AndroidFakerUrl: $AndroidFakerUrl"
 
+AdGuardUrl="https://download.adguard.com/d/18672/adguard.apk"
+echo "AdGuardUrl: $AdGuardUrl"
+
 # Download
 echo "Downloading APKs..."
 parallel \
@@ -108,6 +111,7 @@ parallel \
   "curl --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
   "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk" \
   "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk" \
+  "curl --silent --location \"$AdGuardUrl\" --output fdroid/repo/AD_Guard.apk" \
   "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk"
 
 # Report
