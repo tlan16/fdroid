@@ -62,7 +62,7 @@ echo "BiliRoamingUrl: $BiliRoamingUrl"
 ZhiLiaoUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.shatyuka.zhiliao")
 echo "ZhiLiaoUrl: $ZhiLiaoUrl"
 
-BilibiliChinaUrl="https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk"
+BilibiliChinaUrl="https://dl.hdslb.com/mobile/latest/iBiliPlayer-html5_app_bili.apk"
 echo "BilibiliChinaUrl: $BilibiliChinaUrl"
 
 BaiduUrl="https://www.wandoujia.com/apps/39899/download/dot"
