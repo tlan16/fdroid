@@ -87,6 +87,9 @@ echo "AndroidFakerUrl: $AndroidFakerUrl"
 AdGuardUrl="https://download.adguard.com/d/18672/adguard.apk"
 echo "AdGuardUrl: $AdGuardUrl"
 
+TWRPUrl="https://eu.dl.twrp.me/twrpapp/me.twrp.twrpapp-26.apk"
+echo "TWRPUrl: $TWRPUrl"
+
 # Download
 echo "Downloading APKs..."
 parallel \
@@ -112,6 +115,7 @@ parallel \
   "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk" \
   "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk" \
   "curl --silent --location \"$AdGuardUrl\" --output fdroid/repo/AD_Guard.apk" \
+  "curl --silent --location \"$TWRPUrl\" --output fdroid/repo/TWRP.apk" \
   "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk"
 
 # Report
