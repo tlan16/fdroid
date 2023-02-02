@@ -53,6 +53,15 @@ echo "PixelifyGooglePhotosUrl: $PixelifyGooglePhotosUrl"
 WechatXUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.fkzhang.wechatxposed")
 echo "WechatXUrl: $WechatXUrl"
 
+KnoxPatchUrl=$(getReleaseUrl "Xposed-Modules-Repo" "io.mesalabs.knoxpatch")
+echo "KnoxPatchUrl: $KnoxPatchUrl"
+
+HideMyAppListUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.tsng.hidemyapplist")
+echo "HideMyAppListUrl: $HideMyAppListUrl"
+
+ForceDarkUrl=$(getReleaseUrl "Xposed-Modules-Repo" "moe.henry_zhr.force_dark")
+echo "ForceDarkUrl: $ForceDarkUrl"
+
 XposedSmsCodeUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.github.tianma8023.xposed.smscode")
 echo "XposedSmsCodeUrl: $XposedSmsCodeUrl"
 
@@ -116,6 +125,9 @@ parallel \
   "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk" \
   "curl --silent --location \"$AdGuardUrl\" --output fdroid/repo/AD_Guard.apk" \
   "curl --silent --location \"$TWRPUrl\" --output fdroid/repo/TWRP.apk" \
+  "curl --silent --location \"$KnoxPatchUrl\" --output fdroid/repo/Knox_Patch.apk" \
+  "curl --silent --location \"$HideMyAppListUrl\" --output fdroid/repo/Hide_My_App_List.apk" \
+  "curl --silent --location \"$ForceDarkUrl\" --output fdroid/repo/Force_Dark.apk" \
   "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk"
 
 # Report
