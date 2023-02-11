@@ -3,6 +3,7 @@
 /dist/
 /fdroid/repo
 !/fdroid/repo/icons/
+!/fdroid/repo/Evernote_8.13.3.apk
 /fdroid/metadata/
 
 # Except .gitkepp files
