@@ -99,6 +99,9 @@ echo "AdGuardUrl: $AdGuardUrl"
 TWRPUrl="https://eu.dl.twrp.me/twrpapp/me.twrp.twrpapp-26.apk"
 echo "TWRPUrl: $TWRPUrl"
 
+SkvalexUrl=$(getReleaseUrl "skvalex" "callrecorder")
+echo "SkvalexUrl: $SkvalexUrl"
+
 # Download
 echo "Downloading APKs..."
 parallel \
@@ -128,7 +131,8 @@ parallel \
   "curl --silent --location \"$KnoxPatchUrl\" --output fdroid/repo/Knox_Patch.apk" \
   "curl --silent --location \"$HideMyAppListUrl\" --output fdroid/repo/Hide_My_App_List.apk" \
   "curl --silent --location \"$ForceDarkUrl\" --output fdroid/repo/Force_Dark.apk" \
-  "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk"
+  "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk" \
+  "curl --silent --location \"$SkvalexUrl\" --output fdroid/repo/Skvalex_Callrecorder.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
