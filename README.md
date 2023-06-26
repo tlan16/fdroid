@@ -4,6 +4,6 @@ https://tlan16.github.io/fdroid/repo?fingerprint=DD689F80390DF7493E2245261A3ED6E
 
 ![Fdroid Repo](https://tlan16.github.io/fdroid/repo/index.png)
 
-# Included APKs
+# Included APKs 
 
 ![list of apks](https://tlan16.github.io/fdroid/index.png)
