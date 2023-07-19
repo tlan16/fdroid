@@ -53,3 +53,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
+      - name: Keepalive Workflow
+        uses: gautamkrishnar/keepalive-workflow@1.1.0
