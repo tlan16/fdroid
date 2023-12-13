@@ -1,0 +1,57 @@
+name: Build and Publish
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download apks
+        run: |
+          mkdir -p ./dist
+          touch ./dist/apks.txt
+          ./download-apks.sh
+      - name: Update metadata
+        run: |
+          docker-compose run fdroid update --create-metadata
+      - name: Deploy fdroid repo
+        run: |
+          docker-compose run fdroid deploy -v
+      - name: Setup Pages Static Files
+        run: |
+          # Redirect
+          sudo cp ./static/redirect.html ./dist/fdroid/index.html
+          # Indexes
+          sudo apt-get --quiet update &> /dev/null
+          sudo apt-get --quiet install -y ansilove curl &> /dev/null
+          sudo bash -c "ls dist/fdroid/repo/*.apk | tr '\n' '\0' | xargs -0 -n 1 basename > ./dist/fdroid/index.txt"
+          sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
+          echo "./dist/fdroid/index.txt:"
+          cat ./dist/fdroid/index.txt
+      - name: Setup Pages
+        uses: actions/configure-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './dist/fdroid'
+          retention-days: 1
+      - name: List artifacts
+        run: tree -a -h ./dist/fdroid
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
+      - name: Keepalive Workflow
+        uses: gautamkrishnar/keepalive-workflow@1.1.0

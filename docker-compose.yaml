@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  fdroid:
+    image: ghcr.io/tlan16/docker-executable-fdroidserver:latest
+    working_dir: /fdroid
+    environment:
+      - FDROID_REPO=fdroid/repo
+    volumes:
+      - ./fdroid:/fdroid
+      - ./dist:/dist
