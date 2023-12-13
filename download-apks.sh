@@ -29,13 +29,10 @@ getBromiteWebViewUrl() {
 }
 
 # Prepare URLs
-VancedMicroGUrl="https://github.com/tlan16/revanced-build/releases/download/latest/vanced-microG.apk"
-echo "VancedMicroGUrl: $VancedMicroGUrl"
-
-YoutubeURL="https://github.com/tlan16/revanced-build/releases/download/latest/revanced-nonroot.apk"
+YoutubeURL=$(getReleaseUrl "tlan16" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "youtube-revanced-.+\.apk$")
 echo "YoutubeURL: $YoutubeURL"
 
-YoutubeMusicURL="https://github.com/tlan16/revanced-build/releases/download/latest/revanced-music-nonroot.apk"
+YoutubeMusicURL=$(getReleaseUrl "tlan16" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "music-revanced-.+v8a\.apk$")
 echo "YoutubeMusicURL: $YoutubeMusicURL"
 
 FairMailUrl=$(getReleaseUrl "M66B" "FairEmail")
@@ -50,10 +47,13 @@ echo "AppSettingsRebornUrl: $AppSettingsRebornUrl"
 PixelifyGooglePhotosUrl=$(getReleaseUrl "Xposed-Modules-Repo" "balti.xposed.pixelifygooglephotos")
 echo "PixelifyGooglePhotosUrl: $PixelifyGooglePhotosUrl"
 
+WechatUrl="https://www.wandoujia.com/apps/596157/download/dot"
+echo "WechatUrl: $WechatUrl"
+
 WechatXUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.fkzhang.wechatxposed")
 echo "WechatXUrl: $WechatXUrl"
 
-KnoxPatchUrl=$(getReleaseUrl "Xposed-Modules-Repo" "io.mesalabs.knoxpatch")
+KnoxPatchUrl=$(getReleaseUrl "Xposed-Modules-Repo" "io.mesalabs.knoxpatch" | "$(getGrepBin)" --perl-regexp "\.[0-9]\.apk$")
 echo "KnoxPatchUrl: $KnoxPatchUrl"
 
 HideMyAppListUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.tsng.hidemyapplist")
@@ -76,6 +76,9 @@ echo "BilibiliChinaUrl: $BilibiliChinaUrl"
 
 BaiduUrl="https://www.wandoujia.com/apps/39899/download/dot"
 echo "BaiduUrl: $BaiduUrl"
+
+BaiduPanUrl="https://www.wandoujia.com/apps/280851/download/dot"
+echo "BaiduPanUrl: $BaiduPanUrl"
 
 BromiteWebViewUrl=$(getBromiteWebViewUrl)
 echo "BromiteWebViewUrl: $BromiteWebViewUrl"
@@ -109,19 +112,20 @@ parallel \
   --keep-order \
   --line-buffer \
   sh -c ::: \
-  "curl --silent --location \"$VancedMicroGUrl\" --output fdroid/repo/Vanced_MicroG.apk" \
   "curl --silent --location \"$YoutubeURL\" --output fdroid/repo/Youtube_Revanced.apk" \
   "curl --silent --location \"$YoutubeMusicURL\" --output fdroid/repo/YT_Music_Revanced.apk" \
   "curl --silent --location \"$FairMailUrl\" --output fdroid/repo/Fair_Mail.apk" \
   "curl --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
   "curl --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
   "curl --silent --location \"$PixelifyGooglePhotosUrl\" --output fdroid/repo/Pixelify_Google_Photos.apk" \
+  "curl --silent --location \"$WechatUrl\" --output fdroid/repo/Wechat.apk" \
   "curl --silent --location \"$WechatXUrl\" --output fdroid/repo/WechatX.apk" \
   "curl --silent --location \"$XposedSmsCodeUrl\" --output fdroid/repo/Xposed_SMS_Code.apk" \
   "curl --silent --location \"$BiliRoamingUrl\" --output fdroid/repo/Bili_Roaming.apk" \
   "curl --silent --location \"$ZhiLiaoUrl\" --output fdroid/repo/Zhi_Liao.apk" \
   "curl --silent --location \"$BilibiliChinaUrl\" --output fdroid/repo/Bilibili_China.apk" \
   "curl --silent --location \"$BaiduUrl\" --output fdroid/repo/Baidu.apk" \
+  "curl --silent --location \"$BaiduPanUrl\" --output fdroid/repo/BaiduPan.apk" \
   "curl --silent --location \"$BromiteWebViewUrl\" --output fdroid/repo/Bromite_WebView.apk" \
   "curl --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
   "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk" \
