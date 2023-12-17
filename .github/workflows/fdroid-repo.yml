@@ -7,11 +7,15 @@ on:
     - cron: "0 14 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: ${{github.repository}}-${{ github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
+      contents: write
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
     environment:
@@ -53,5 +57,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
-      - name: Keepalive Workflow
-        uses: gautamkrishnar/keepalive-workflow@1.1.0
+      - uses: gautamkrishnar/keepalive-workflow@1.1.0
