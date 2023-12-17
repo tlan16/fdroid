@@ -35,6 +35,9 @@ echo "YoutubeURL: $YoutubeURL"
 YoutubeMusicURL=$(getReleaseUrl "tlan16" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "music-revanced-.+v8a\.apk$")
 echo "YoutubeMusicURL: $YoutubeMusicURL"
 
+MicroGURL=$(getReleaseUrl "TeamVanced" "VancedMicroG")
+echo "MicroGURL: $MicroGURL"
+
 FairMailUrl=$(getReleaseUrl "M66B" "FairEmail")
 echo "FairMailUrl: $FairMailUrl"
 
@@ -114,6 +117,7 @@ parallel \
   sh -c ::: \
   "curl --silent --location \"$YoutubeURL\" --output fdroid/repo/Youtube_Revanced.apk" \
   "curl --silent --location \"$YoutubeMusicURL\" --output fdroid/repo/YT_Music_Revanced.apk" \
+  "curl --silent --location \"$MicroGURL\" --output fdroid/repo/migrog.apk" \
   "curl --silent --location \"$FairMailUrl\" --output fdroid/repo/Fair_Mail.apk" \
   "curl --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
   "curl --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
