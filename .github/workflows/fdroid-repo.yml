@@ -56,5 +56,5 @@ jobs:
         run: tree -a -h ./dist/fdroid
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@main
+        uses: actions/deploy-pages@v4
       - uses: gautamkrishnar/keepalive-workflow@1.1.0
