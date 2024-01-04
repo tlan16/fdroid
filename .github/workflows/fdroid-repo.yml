@@ -28,11 +28,8 @@ jobs:
           mkdir -p ./dist
           touch ./dist/apks.txt
           ./download-apks.sh
-      - name: Update metadata
-        run: |
-          docker-compose run fdroid update --create-metadata
-      - name: Deploy fdroid repo
-        run: |
+      - run: docker-compose run fdroid update --create-metadata
+      - run: |
           docker-compose run fdroid deploy -v
       - name: Setup Pages Static Files
         run: |
@@ -45,16 +42,12 @@ jobs:
           sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
           echo "./dist/fdroid/index.txt:"
           cat ./dist/fdroid/index.txt
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v2
         with:
           path: './dist/fdroid'
           retention-days: 1
-      - name: List artifacts
-        run: tree -a -h ./dist/fdroid
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - run: tree -a -h ./dist/fdroid
+      - id: deployment
         uses: actions/deploy-pages@v4
       - uses: gautamkrishnar/keepalive-workflow@1.1.0
