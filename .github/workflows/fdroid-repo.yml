@@ -46,8 +46,12 @@ jobs:
           sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
           echo "./dist/fdroid/index.txt:"
           cat ./dist/fdroid/index.txt
+      - run: |
+          chmod -c -R +rX "_site/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
       - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v2
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: './dist/fdroid'
           retention-days: 1
