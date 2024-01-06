@@ -30,6 +30,11 @@ getBromiteWebViewUrl() {
 }
 
 # Prepare URLs
+FanQieURL=$(getReleaseUrl "Xposed-Modules-Repo" "com.hx.fanqie" | "$(getGrepBin)" --perl-regexp "fanqie-.+\.apk$")
+echo "FanQieURL: $FanQieURL"
+FanQieXposedURL=$(getReleaseUrl "Xposed-Modules-Repo" "com.hx.fanqie" | "$(getGrepBin)" --perl-regexp "fanqie_xposed.+\.apk$")
+echo "FanQieXposedURL: $FanQieXposedURL"
+
 YoutubeURL=$(getReleaseUrl "tlan16" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "youtube-revanced-.+\.apk$")
 echo "YoutubeURL: $YoutubeURL"
 
@@ -141,7 +146,10 @@ parallel \
   "curl --silent --location \"$HideMyAppListUrl\" --output fdroid/repo/Hide_My_App_List.apk" \
   "curl --silent --location \"$ForceDarkUrl\" --output fdroid/repo/Force_Dark.apk" \
   "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk" \
-  "curl --silent --location \"$SkvalexUrl\" --output fdroid/repo/Skvalex_Callrecorder.apk"
+  "curl --silent --location \"$SkvalexUrl\" --output fdroid/repo/Skvalex_Callrecorder.apk" \
+  "curl --silent --location \"$FanQieURL\" --output fdroid/repo/FanQie.apk" \
+  "curl --silent --location \"$FanQieXposedURL\" --output fdroid/repo/FanQieXposedURL.apk"
+
 
 # Unzip archives
 ./parts/revolute/extract.sh
