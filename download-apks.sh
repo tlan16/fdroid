@@ -30,6 +30,9 @@ getBromiteWebViewUrl() {
 }
 
 # Prepare URLs
+v2rayNGURL=$(getReleaseUrl "2dust" "v2rayNG" | "$(getGrepBin)" --perl-regexp "v2rayNG_\d+\.\d+\.\d+\.apk$")
+echo "v2rayNGURL: $v2rayNGURL"
+
 FanQieURL=$(getReleaseUrl "Xposed-Modules-Repo" "com.hx.fanqie" | "$(getGrepBin)" --perl-regexp "fanqie-.+\.apk$")
 echo "FanQieURL: $FanQieURL"
 FanQieXposedURL=$(getReleaseUrl "Xposed-Modules-Repo" "com.hx.fanqie" | "$(getGrepBin)" --perl-regexp "fanqie_xposed.+\.apk$")
@@ -148,8 +151,8 @@ parallel \
   "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk" \
   "curl --silent --location \"$SkvalexUrl\" --output fdroid/repo/Skvalex_Callrecorder.apk" \
   "curl --silent --location \"$FanQieURL\" --output fdroid/repo/FanQie.apk" \
-  "curl --silent --location \"$FanQieXposedURL\" --output fdroid/repo/FanQieXposedURL.apk"
-
+  "curl --silent --location \"$FanQieXposedURL\" --output fdroid/repo/FanQieXposedURL.apk" \
+  "curl --silent --location \"$v2rayNGURL\" --output fdroid/repo/v2rayNG.apk"
 
 # Unzip archives
 ./parts/revolute/extract.sh
