@@ -32,9 +32,8 @@ jobs:
           mkdir -p ./dist
           touch ./dist/apks.txt
           ./download-apks.sh
-      - run: docker-compose run fdroid update --create-metadata
-      - run: |
-          docker-compose run fdroid deploy -v
+      - run: docker compose run fdroid update --create-metadata
+      - run: docker compose run fdroid deploy -v
       - name: Setup Pages Static Files
         run: |
           # Redirect
