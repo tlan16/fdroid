@@ -20,7 +20,7 @@ getReleaseUrl() {
   owner="$1"
   repo="$2"
   apiUrl="https://api.github.com/repos/$owner/$repo/releases/latest"
-  curl --silent "$apiUrl" | grep browser_ | cut -d\" -f4
+  curl --silent "$apiUrl" | "$(getGrepBin)" browser_ | cut -d\" -f4
 }
 
 getBromiteWebViewUrl() {
@@ -30,6 +30,12 @@ getBromiteWebViewUrl() {
 }
 
 # Prepare URLs
+NekoBoxURL=$(getReleaseUrl "MatsuriDayo" "NekoBoxForAndroid" | "$(getGrepBin)" --perl-regexp "arm64-v8a\.apk$")
+echo "NekoBoxURL: $NekoBoxURL"
+
+DeltaURL=$(getReleaseUrl "Delta-Icons" "android" | "$(getGrepBin)" --perl-regexp "\d+.apk$")
+echo "DeltaURL: $DeltaURL"
+
 v2rayNGURL=$(getReleaseUrl "2dust" "v2rayNG" | "$(getGrepBin)" --perl-regexp "v2rayNG_\d+\.\d+\.\d+\.apk$")
 echo "v2rayNGURL: $v2rayNGURL"
 
@@ -152,7 +158,9 @@ parallel \
   "curl --silent --location \"$SkvalexUrl\" --output fdroid/repo/Skvalex_Callrecorder.apk" \
   "curl --silent --location \"$FanQieURL\" --output fdroid/repo/FanQie.apk" \
   "curl --silent --location \"$FanQieXposedURL\" --output fdroid/repo/FanQieXposedURL.apk" \
-  "curl --silent --location \"$v2rayNGURL\" --output fdroid/repo/v2rayNG.apk"
+  "curl --silent --location \"$v2rayNGURL\" --output fdroid/repo/v2rayNG.apk" \
+  "curl --silent --location \"$NekoBoxURL\" --output fdroid/repo/NekoBox.apk" \
+  "curl --silent --location \"$DeltaURL\" --output fdroid/repo/Delta.apk"
 
 # Unzip archives
 ./parts/revolute/extract.sh
