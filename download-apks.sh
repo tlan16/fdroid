@@ -44,14 +44,11 @@ echo "FanQieURL: $FanQieURL"
 FanQieXposedURL=$(getReleaseUrl "Xposed-Modules-Repo" "com.hx.fanqie" | "$(getGrepBin)" --perl-regexp "fanqie_xposed.+\.apk$")
 echo "FanQieXposedURL: $FanQieXposedURL"
 
-YoutubeURL=$(getReleaseUrl "tlan16" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "youtube-revanced-.+\.apk$")
+YoutubeURL=$(getReleaseUrl "j-hc" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "youtube-revanced-.+\.apk$")
 echo "YoutubeURL: $YoutubeURL"
 
-YoutubeMusicURL=$(getReleaseUrl "tlan16" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "music-revanced-.+v8a\.apk$")
+YoutubeMusicURL=$(getReleaseUrl "j-hc" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "music-revanced-.+v8a\.apk$")
 echo "YoutubeMusicURL: $YoutubeMusicURL"
-
-MicroGURL=$(getReleaseUrl "TeamVanced" "VancedMicroG")
-echo "MicroGURL: $MicroGURL"
 
 FairMailUrl=$(getReleaseUrl "M66B" "FairEmail")
 echo "FairMailUrl: $FairMailUrl"
@@ -64,9 +61,6 @@ echo "AppSettingsRebornUrl: $AppSettingsRebornUrl"
 
 PixelifyGooglePhotosUrl=$(getReleaseUrl "Xposed-Modules-Repo" "balti.xposed.pixelifygooglephotos")
 echo "PixelifyGooglePhotosUrl: $PixelifyGooglePhotosUrl"
-
-WechatUrl="https://www.wandoujia.com/apps/596157/download/dot"
-echo "WechatUrl: $WechatUrl"
 
 WechatXUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.fkzhang.wechatxposed")
 echo "WechatXUrl: $WechatXUrl"
@@ -89,13 +83,13 @@ echo "BiliRoamingUrl: $BiliRoamingUrl"
 ZhiLiaoUrl=$(getReleaseUrl "Xposed-Modules-Repo" "com.shatyuka.zhiliao")
 echo "ZhiLiaoUrl: $ZhiLiaoUrl"
 
-BilibiliChinaUrl="https://dl.hdslb.com/mobile/latest/iBiliPlayer-html5_app_bili.apk"
+BilibiliChinaUrl="https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk"
 echo "BilibiliChinaUrl: $BilibiliChinaUrl"
 
-BaiduUrl="https://www.wandoujia.com/apps/39899/download/dot"
+BaiduUrl="$(curl --silent "https://mo.baidu.com/txl/" | "$(getGrepBin)" --only-matching --extended-regexp "https:\\\/\\\/downpack\.baidu\.com\\\/baidusearch_AndroidPhone_.+.apk")"
 echo "BaiduUrl: $BaiduUrl"
 
-BaiduPanUrl="https://www.wandoujia.com/apps/280851/download/dot"
+BaiduPanUrl="http://pan.baidu.com./wap/jumpdownload"
 echo "BaiduPanUrl: $BaiduPanUrl"
 
 BromiteWebViewUrl=$(getBromiteWebViewUrl)
@@ -137,7 +131,6 @@ parallel \
   "curl --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
   "curl --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
   "curl --silent --location \"$PixelifyGooglePhotosUrl\" --output fdroid/repo/Pixelify_Google_Photos.apk" \
-  "curl --silent --location \"$WechatUrl\" --output fdroid/repo/Wechat.apk" \
   "curl --silent --location \"$WechatXUrl\" --output fdroid/repo/WechatX.apk" \
   "curl --silent --location \"$XposedSmsCodeUrl\" --output fdroid/repo/Xposed_SMS_Code.apk" \
   "curl --silent --location \"$BiliRoamingUrl\" --output fdroid/repo/Bili_Roaming.apk" \
