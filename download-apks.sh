@@ -30,6 +30,21 @@ getBromiteWebViewUrl() {
 }
 
 # Prepare URLs
+FacebookURL=$(getReleaseUrl "revanced-apks" "build-apps" | "$(getGrepBin)" --perl-regexp "facebook-revanced-.+-all.apk")
+echo "FacebookURL: $FacebookURL"
+
+YtMusicURL=$(getReleaseUrl "revanced-apks" "build-apps" | "$(getGrepBin)" --perl-regexp "music-anddea-.+-arm64-v8a.apk")
+echo "YtMusicURL: $YtMusicURL"
+
+RedditURL=$(getReleaseUrl "revanced-apks" "build-apps" | "$(getGrepBin)" --perl-regexp "\/reddit-revanced-.+-all.apk")
+echo "RedditURL: $RedditURL"
+
+VscoURL=$(getReleaseUrl "revanced-apks" "build-apps" | "$(getGrepBin)" --perl-regexp "vsco-revanced-.+-arm64-v8a.apk")
+echo "VscoURL: $VscoURL"
+
+YoutubeURL=$(getReleaseUrl "revanced-apks" "build-apps" | "$(getGrepBin)" --perl-regexp "youtube-anddea-.+-all.apk")
+echo "YoutubeURL: $YoutubeURL"
+
 NekoBoxURL=$(getReleaseUrl "MatsuriDayo" "NekoBoxForAndroid" | "$(getGrepBin)" --perl-regexp "arm64-v8a\.apk$")
 echo "NekoBoxURL: $NekoBoxURL"
 
@@ -43,12 +58,6 @@ FanQieURL=$(getReleaseUrl "Xposed-Modules-Repo" "com.hx.fanqie" | "$(getGrepBin)
 echo "FanQieURL: $FanQieURL"
 FanQieXposedURL=$(getReleaseUrl "Xposed-Modules-Repo" "com.hx.fanqie" | "$(getGrepBin)" --perl-regexp "fanqie_xposed.+\.apk$")
 echo "FanQieXposedURL: $FanQieXposedURL"
-
-YoutubeURL=$(getReleaseUrl "j-hc" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "youtube-revanced-.+\.apk$")
-echo "YoutubeURL: $YoutubeURL"
-
-YoutubeMusicURL=$(getReleaseUrl "j-hc" "revanced-magisk-module" | "$(getGrepBin)" --perl-regexp "music-revanced-.+v8a\.apk$")
-echo "YoutubeMusicURL: $YoutubeMusicURL"
 
 FairMailUrl=$(getReleaseUrl "M66B" "FairEmail")
 echo "FairMailUrl: $FairMailUrl"
@@ -124,9 +133,11 @@ parallel \
   --keep-order \
   --line-buffer \
   sh -c ::: \
-  "curl --silent --location \"$YoutubeURL\" --output fdroid/repo/Youtube_Revanced.apk" \
-  "curl --silent --location \"$YoutubeMusicURL\" --output fdroid/repo/YT_Music_Revanced.apk" \
-  "curl --silent --location \"$MicroGURL\" --output fdroid/repo/migrog.apk" \
+  "curl --silent --location \"$FacebookURL\" --output fdroid/repo/Facebook.apk" \
+  "curl --silent --location \"$YtMusicURL\" --output fdroid/repo/YtMusic.apk" \
+  "curl --silent --location \"$RedditURL\" --output fdroid/repo/Reddit.apk" \
+  "curl --silent --location \"$VscoURL\" --output fdroid/repo/Vsco.apk" \
+  "curl --silent --location \"$YoutubeURL\" --output fdroid/repo/Youtube.apk" \
   "curl --silent --location \"$FairMailUrl\" --output fdroid/repo/Fair_Mail.apk" \
   "curl --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
   "curl --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
