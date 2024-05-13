@@ -6,6 +6,12 @@ cd "$BASEDIR" || exit 1
 echo "BASEDIR: $BASEDIR"
 mkdir -p "$BASEDIR"/fdroid/repo
 
+githubAuthArg=''
+if [[ -n "$GITHUB_TOKEN" ]]; then
+  githubAuthArg="-u tlan16:$GITHUB_TOKEN"
+  echo "Using GitHub token for authentication"
+fi
+
 getGrepBin() {
 #  use ggrep if available
   if which ggrep >/dev/null 2>&1; then
@@ -20,7 +26,10 @@ getReleaseUrl() {
   owner="$1"
   repo="$2"
   apiUrl="https://api.github.com/repos/$owner/$repo/releases/latest"
-  curl --silent "$apiUrl" | "$(getGrepBin)" browser_ | cut -d\" -f4
+  # shellcheck disable=SC2086
+  curl --fail --silent $githubAuthArg "$apiUrl" \
+    | "$(getGrepBin)" browser_ \
+    | cut -d\" -f4
 }
 
 # Prepare URLs
@@ -89,18 +98,11 @@ echo "ZhiLiaoUrl: $ZhiLiaoUrl"
 BilibiliChinaUrl="https://dl.hdslb.com/mobile/latest/android64/iBiliPlayer-bili.apk"
 echo "BilibiliChinaUrl: $BilibiliChinaUrl"
 
-BaiduUrl="$(curl --silent "https://mo.baidu.com/txl/" | "$(getGrepBin)" --only-matching --extended-regexp "https:\\\/\\\/downpack\.baidu\.com\\\/baidusearch_AndroidPhone_.+.apk")"
-echo "BaiduUrl: $BaiduUrl"
-
 BaiduPanUrl="http://pan.baidu.com./wap/jumpdownload"
 echo "BaiduPanUrl: $BaiduPanUrl"
 
 ChineseConsulateUrl="https://app-download-1301220764.cos.ap-beijing.myqcloud.com/com.gov.mfa.release.apk"
 echo "ChineseConsulateUrl: $ChineseConsulateUrl"
-
-ALHZDocId="$(curl --silent https://alhs.live/ | "$(getGrepBin)" --perl-regexp --only-matching '(?<=<script>var info=).+(?=;var)' | jq '.link | map(select(.name | contains("APP"))) | first | .target' | "$(getGrepBin)" --perl-regexp --only-matching '(?<=file\/)[^"]+')"
-ALHZUrl="https://docs.zohopublic.com.cn/downloaddocument.do?docId=$ALHZDocId&docExtn=apk"
-echo "艾利浩斯Url: $ALHZUrl"
 
 DeepSleepUrl=$(getReleaseUrl "Jasper-1024" "DeepSleep")
 echo "DeepSleepUrl: $DeepSleepUrl"
@@ -120,41 +122,39 @@ echo "SkvalexUrl: $SkvalexUrl"
 # Download
 echo "Downloading APKs..."
 parallel \
+  --retries 3 \
   --jobs 8 \
-  --keep-order \
-  --line-buffer \
+  -k --lb \
   sh -c ::: \
-  "curl --silent --location \"$FacebookURL\" --output fdroid/repo/Facebook.apk" \
-  "curl --silent --location \"$YtMusicURL\" --output fdroid/repo/YtMusic.apk" \
-  "curl --silent --location \"$RedditURL\" --output fdroid/repo/Reddit.apk" \
-  "curl --silent --location \"$VscoURL\" --output fdroid/repo/Vsco.apk" \
-  "curl --silent --location \"$YoutubeURL\" --output fdroid/repo/Youtube.apk" \
-  "curl --silent --location \"$FairMailUrl\" --output fdroid/repo/Fair_Mail.apk" \
-  "curl --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
-  "curl --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
-  "curl --silent --location \"$PixelifyGooglePhotosUrl\" --output fdroid/repo/Pixelify_Google_Photos.apk" \
-  "curl --silent --location \"$WechatXUrl\" --output fdroid/repo/WechatX.apk" \
-  "curl --silent --location \"$XposedSmsCodeUrl\" --output fdroid/repo/Xposed_SMS_Code.apk" \
-  "curl --silent --location \"$BiliRoamingUrl\" --output fdroid/repo/Bili_Roaming.apk" \
-  "curl --silent --location \"$ZhiLiaoUrl\" --output fdroid/repo/Zhi_Liao.apk" \
-  "curl --silent --location \"$BilibiliChinaUrl\" --output fdroid/repo/Bilibili_China.apk" \
-  "curl --silent --location \"$BaiduUrl\" --output fdroid/repo/Baidu.apk" \
-  "curl --silent --location \"$BaiduPanUrl\" --output fdroid/repo/BaiduPan.apk" \
-  "curl --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
-  "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk" \
-  "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk" \
-  "curl --silent --location \"$AdGuardUrl\" --output fdroid/repo/AD_Guard.apk" \
-  "curl --silent --location \"$TWRPUrl\" --output fdroid/repo/TWRP.apk" \
-  "curl --silent --location \"$KnoxPatchUrl\" --output fdroid/repo/Knox_Patch.apk" \
-  "curl --silent --location \"$HideMyAppListUrl\" --output fdroid/repo/Hide_My_App_List.apk" \
-  "curl --silent --location \"$ForceDarkUrl\" --output fdroid/repo/Force_Dark.apk" \
-  "curl --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk" \
-  "curl --silent --location \"$SkvalexUrl\" --output fdroid/repo/Skvalex_Callrecorder.apk" \
-  "curl --silent --location \"$FanQieURL\" --output fdroid/repo/FanQie.apk" \
-  "curl --silent --location \"$FanQieXposedURL\" --output fdroid/repo/FanQieXposedURL.apk" \
-  "curl --silent --location \"$v2rayNGURL\" --output fdroid/repo/v2rayNG.apk" \
-  "curl --silent --location \"$NekoBoxURL\" --output fdroid/repo/NekoBox.apk" \
-  "curl --silent --location \"$DeltaURL\" --output fdroid/repo/Delta.apk"
+  "curl $githubAuthArg --fail --silent --location \"$FacebookURL\" --output fdroid/repo/Facebook.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$YtMusicURL\" --output fdroid/repo/YtMusic.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$RedditURL\" --output fdroid/repo/Reddit.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$VscoURL\" --output fdroid/repo/Vsco.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$YoutubeURL\" --output fdroid/repo/Youtube.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$FairMailUrl\" --output fdroid/repo/Fair_Mail.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$AnyWebViewUrl\" --output fdroid/repo/Any_Web_View.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$AppSettingsRebornUrl\" --output fdroid/repo/App_Settings_Reborn.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$PixelifyGooglePhotosUrl\" --output fdroid/repo/Pixelify_Google_Photos.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$WechatXUrl\" --output fdroid/repo/WechatX.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$XposedSmsCodeUrl\" --output fdroid/repo/Xposed_SMS_Code.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$BiliRoamingUrl\" --output fdroid/repo/Bili_Roaming.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$ZhiLiaoUrl\" --output fdroid/repo/Zhi_Liao.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$BilibiliChinaUrl\" --output fdroid/repo/Bilibili_China.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$BaiduPanUrl\" --output fdroid/repo/BaiduPan.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$AdGuardUrl\" --output fdroid/repo/AD_Guard.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$TWRPUrl\" --output fdroid/repo/TWRP.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$KnoxPatchUrl\" --output fdroid/repo/Knox_Patch.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$HideMyAppListUrl\" --output fdroid/repo/Hide_My_App_List.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$ForceDarkUrl\" --output fdroid/repo/Force_Dark.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$AndroidFakerUrl\" --output fdroid/repo/Android_Faker.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$SkvalexUrl\" --output fdroid/repo/Skvalex_Callrecorder.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$FanQieURL\" --output fdroid/repo/FanQie.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$FanQieXposedURL\" --output fdroid/repo/FanQieXposedURL.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$v2rayNGURL\" --output fdroid/repo/v2rayNG.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$NekoBoxURL\" --output fdroid/repo/NekoBox.apk" \
+  "curl $githubAuthArg --fail --silent --location \"$DeltaURL\" --output fdroid/repo/Delta.apk"
 
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
