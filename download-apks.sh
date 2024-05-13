@@ -23,12 +23,6 @@ getReleaseUrl() {
   curl --silent "$apiUrl" | "$(getGrepBin)" browser_ | cut -d\" -f4
 }
 
-getBromiteWebViewUrl() {
-  local owner repo apiUrl
-  apiUrl="https://api.github.com/repos/bromite/bromite/releases/latest"
-  curl --silent "$apiUrl" | "$(getGrepBin)" --only-matching --perl-regexp 'https:\/\/.+arm64_SystemWebView\.apk'
-}
-
 # Prepare URLs
 FacebookURL=$(getReleaseUrl "revanced-apks" "build-apps" | "$(getGrepBin)" --perl-regexp "facebook-revanced-.+-all.apk")
 echo "FacebookURL: $FacebookURL"
@@ -101,9 +95,6 @@ echo "BaiduUrl: $BaiduUrl"
 BaiduPanUrl="http://pan.baidu.com./wap/jumpdownload"
 echo "BaiduPanUrl: $BaiduPanUrl"
 
-BromiteWebViewUrl=$(getBromiteWebViewUrl)
-echo "BromiteWebViewUrl: $BromiteWebViewUrl"
-
 ChineseConsulateUrl="https://app-download-1301220764.cos.ap-beijing.myqcloud.com/com.gov.mfa.release.apk"
 echo "ChineseConsulateUrl: $ChineseConsulateUrl"
 
@@ -149,7 +140,6 @@ parallel \
   "curl --silent --location \"$BilibiliChinaUrl\" --output fdroid/repo/Bilibili_China.apk" \
   "curl --silent --location \"$BaiduUrl\" --output fdroid/repo/Baidu.apk" \
   "curl --silent --location \"$BaiduPanUrl\" --output fdroid/repo/BaiduPan.apk" \
-  "curl --silent --location \"$BromiteWebViewUrl\" --output fdroid/repo/Bromite_WebView.apk" \
   "curl --silent --location \"$ChineseConsulateUrl\" --output fdroid/repo/Chinese_Consulate.apk" \
   "curl --silent --location \"$ALHZUrl\" --output fdroid/repo/alhz.apk" \
   "curl --silent --location \"$DeepSleepUrl\" --output fdroid/repo/Deep_Sleep.apk" \
