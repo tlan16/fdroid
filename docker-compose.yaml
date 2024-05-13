@@ -1,8 +1,7 @@
-version: "3.9"
-
 services:
   fdroid:
     image: ghcr.io/tlan16/docker-executable-fdroidserver:latest
+    pull_policy: always
     working_dir: /fdroid
     environment:
       - FDROID_REPO=fdroid/repo
