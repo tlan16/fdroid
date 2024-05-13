@@ -166,10 +166,6 @@ parallel \
   "curl --silent --location \"$NekoBoxURL\" --output fdroid/repo/NekoBox.apk" \
   "curl --silent --location \"$DeltaURL\" --output fdroid/repo/Delta.apk"
 
-# Unzip archives
-./parts/revolute/extract.sh
-cp "$BASEDIR"/parts/revolute/revolut-7-30-3.apk "$BASEDIR"/fdroid/repo/Revolut.apk
-
 # Report
 sleep 0.1 # Sleep to allow parallel to finish
 echo "Downloaded APKs:"
