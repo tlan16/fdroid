@@ -8,3 +8,5 @@
 
 # Except .gitkepp files
 !/fdroid/repo/.gitkeep
+
+.env
