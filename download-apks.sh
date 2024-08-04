@@ -40,15 +40,35 @@ url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced-extended-.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'x-piko-.+-all.apk')
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'x-piko-.+-all\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'reddit-revanced-extended-.+-all.apk')
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'reddit-revanced-extended-.+-all\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'adguard-.+-release.apk')
+url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'adguard-.+-release\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+url=$(getReleaseUrls "vvb2060" "KeyAttestation" 'KeyAttestation-.+\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+url=$(getReleaseUrls "AkaneTan" "Checker")
+echo "url: $url"
+echo "$url" >> urls.txt
+
+url="https://github.com/rushiranpise/detection/raw/main/Hunter_5.5.0.apk"
+echo "url: $url"
+echo "$url" >> urls.txt
+
+url="https://github.com/rushiranpise/detection/raw/main/MemoryDetector_2.1.0.apk"
+echo "url: $url"
+echo "$url" >> urls.txt
+
+url=$(getReleaseUrls "RabehX" "Securify")
 echo "url: $url"
 echo "$url" >> urls.txt
 
