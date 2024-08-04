@@ -26,7 +26,7 @@ getReleaseUrls() {
   result="$(echo "$result" | grep browser_)"
   result="$(echo "$result" | cut -d\" -f4)"
   if [[ -n "$regex" ]]; then
-    result="$(echo "$result" | grep --only-matching --perl-regexp "$regex")"
+    result="$(echo "$result" | grep --perl-regexp "$regex")"
   fi
   echo "$result" | head -n 1
 }
@@ -40,7 +40,12 @@ url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced-extended-.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
+url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'adguard-.+-release.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
 cat urls.txt
+exit 1
 
 rm -f ./fdroid/*.apk || true
 aria2c -i urls.txt -d ./fdroid/repo -j 10 -x 10
