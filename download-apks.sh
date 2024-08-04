@@ -26,13 +26,13 @@ getReleaseUrls() {
   result="$(echo "$result" | grep browser_)"
   result="$(echo "$result" | cut -d\" -f4)"
   if [[ -n "$regex" ]]; then
-    result="$(echo "$result" | grep --perl-regexp "$regex")"
+    result="$(echo "$result" | grep --only-matching --perl-regexp "$regex")"
   fi
   echo "$result" | head -n 1
 }
 
 echo '' > urls.txt
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'music-revanced-extended.+\.apk')
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'music-revanced-extended.+arm64-v8a\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 

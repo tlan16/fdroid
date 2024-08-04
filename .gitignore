@@ -10,3 +10,4 @@
 !/fdroid/repo/.gitkeep
 
 .env
+/urls.txt

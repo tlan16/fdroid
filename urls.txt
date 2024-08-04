@@ -1,3 +1,0 @@
-
-https://github.com/krvstek/rvx-apks/releases/download/27/music-revanced-extended-v7.10.51-arm64-v8a.apk
-https://github.com/krvstek/rvx-apks/releases/download/27/youtube-revanced-extended-v19.16.39-all.apk
