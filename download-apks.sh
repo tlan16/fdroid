@@ -19,7 +19,7 @@ getReleaseUrls() {
 
   owner="$1"
   repo="$2"
-  regex="$3"
+  regex="$(echo "$3" | xargs)"
   apiUrl="https://api.github.com/repos/$owner/$repo/releases/latest"
   # shellcheck disable=SC2086
   result="$(curl --fail --silent $githubAuthArg "$apiUrl")"
@@ -40,12 +40,19 @@ url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced-extended-.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'x-piko-.+-all.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'reddit-revanced-extended-.+-all.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
 url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'adguard-.+-release.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
 cat urls.txt
-exit 1
 
 rm -f ./fdroid/*.apk || true
 aria2c -i urls.txt -d ./fdroid/repo -j 10 -x 10
