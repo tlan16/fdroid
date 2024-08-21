@@ -36,6 +36,11 @@ url=$(getReleaseUrls "krvstek" "rvx-apks" 'music-revanced-extended.+arm64-v8a\.a
 echo "url: $url"
 echo "$url" >> urls.txt
 
+url=$(getReleaseUrls "j-hc" "revanced-magisk-module" 'music-revanced-.+-arm64-v8a\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+
 url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced-extended-.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
