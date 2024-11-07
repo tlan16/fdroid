@@ -32,6 +32,11 @@ getReleaseUrls() {
 }
 
 echo '' > urls.txt
+
+url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard-[0-9]\.[0-9]\.[0-9]-(hotfix|release).apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
 url=$(getReleaseUrls "krvstek" "rvx-apks" 'music-revanced-extended.+arm64-v8a\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
