@@ -94,4 +94,10 @@ echo "$url" >> urls.txt
 cat urls.txt
 
 rm -f ./fdroid/*.apk || true
-aria2c -i urls.txt -d ./fdroid/repo -j 10 -x 10
+
+if [[ -n "$GITHUB_TOKEN" ]]; then
+  githubAuthArg="-u tlan16:$GITHUB_TOKEN"
+  aria2c -i urls.txt -d ./fdroid/repo -j 10 -x 10
+else
+  aria2c --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10
+fi
