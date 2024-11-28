@@ -37,20 +37,33 @@ url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard-[0-9]\
 echo "url: $url"
 echo "$url" >> urls.txt
 
-#  music-revanced-v7.29.51-arm64-v8a.apk
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'music-revanced.+arm64-v8a\.apk')
+# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-beta-arm64-v8a-anddea.apk
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'youtube-beta-arm64-v8a-anddea\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced.+\.apk')
+# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-music-beta-arm64-v8a-anddea.apk
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'youtube-music-beta-arm64-v8a.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'x-revanced-.+-all\.apk')
+# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/twitter-beta-piko.apk
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'twitter-beta-piko\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'reddit-revanced-.+-all\.apk')
+# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/reddit-revanced-extended.apk
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'reddit-revanced-extended\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/bilibili-BiliRoamingM.apk
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'bilibili-BiliRoamingM\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/fx-file-explorer-indrastorms.apk
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'fx-file-explorer-indrastorms\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
