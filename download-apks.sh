@@ -46,11 +46,11 @@ url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'x-piko-.+-all\.apk')
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'x-revanced-.+-all\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'reddit-revanced-extended-.+-all\.apk')
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'reddit-revanced-.+-all\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
