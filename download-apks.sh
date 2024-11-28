@@ -67,10 +67,6 @@ url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'fx-f
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'adguard-.+-release\.apk')
-echo "url: $url"
-echo "$url" >> urls.txt
-
 url=$(getReleaseUrls "vvb2060" "KeyAttestation" 'KeyAttestation-.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
