@@ -37,16 +37,12 @@ url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard-[0-9]\
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'music-revanced-extended.+arm64-v8a\.apk')
+#  music-revanced-v7.29.51-arm64-v8a.apk
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'music-revanced.+arm64-v8a\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-url=$(getReleaseUrls "j-hc" "revanced-magisk-module" 'music-revanced-.+-arm64-v8a\.apk')
-echo "url: $url"
-echo "$url" >> urls.txt
-
-
-url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced-extended-.+\.apk')
+url=$(getReleaseUrls "krvstek" "rvx-apks" 'youtube-revanced.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
