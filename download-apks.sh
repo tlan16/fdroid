@@ -78,6 +78,10 @@ url=$(getReleaseUrls "Haleydu" "Cimoc" 'Cimoc_[0-9].+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
+url="https://cdn.kuaiyuepu.com/app/android/kuaiyuepu.apk"
+echo "url: $url"
+echo "$url" >> urls.txt
+
 url=$(getReleaseUrls "vvb2060" "KeyAttestation" 'KeyAttestation-.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
@@ -104,8 +108,7 @@ rm -f ./fdroid/*.apk || true
 
 if [[ -n "$GITHUB_TOKEN" ]]; then
   githubAuthArg="-u tlan16:$GITHUB_TOKEN"
-  aria2c -i urls.txt -d ./fdroid/repo -j 10 -x 10
+  aria2c --check-certificate=false -i urls.txt -d ./fdroid/repo -j 10 -x 10
 else
-  aria2c --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10
+  aria2c --check-certificate=false --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10
 fi
-aria2c "https://cdn.kuaiyuepu.com/app/android/kuaiyuepu.apk" -d ./fdroid/repo
