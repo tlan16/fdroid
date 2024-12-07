@@ -33,7 +33,8 @@ getReleaseUrls() {
 
 echo '' > urls.txt
 
-url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard-[0-9]\.[0-9]\.[0-9]-(hotfix|release).apk')
+# https://github.com/AdguardTeam/AdguardForAndroid/releases/download/v4.7/adguard_4.7.apk
+url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard_[0-9]\.[0-9]+.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
@@ -64,6 +65,16 @@ echo "$url" >> urls.txt
 
 # https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/fx-file-explorer-indrastorms.apk
 url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'fx-file-explorer-indrastorms\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+# https://github.com/gedoor/legado/releases/download/3.25/legado_app_3.25.apk
+url=$(getReleaseUrls "gedoor" "legado" 'legado_app_[0-9].+\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+# https://github.com/Haleydu/Cimoc/releases/download/1.7.20/Cimoc_1.7.224_1622.apk
+url=$(getReleaseUrls "Haleydu" "Cimoc" 'Cimoc_[0-9].+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
