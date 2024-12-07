@@ -78,6 +78,10 @@ url=$(getReleaseUrls "Haleydu" "Cimoc" 'Cimoc_[0-9].+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
+url="https://cdn.kuaiyuepu.com/app/android/kuaiyuepu.apk"
+echo "url: $url"
+echo "$url" >> urls.txt
+
 url=$(getReleaseUrls "vvb2060" "KeyAttestation" 'KeyAttestation-.+\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
