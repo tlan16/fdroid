@@ -23,6 +23,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: ansilove curl aria2
       - name: Download apks
         run: |
           mkdir -p ./dist
@@ -35,8 +38,6 @@ jobs:
           # Redirect
           sudo cp ./static/redirect.html ./dist/fdroid/index.html
           # Indexes
-          sudo apt-get --quiet update &> /dev/null
-          sudo apt-get --quiet install -y ansilove curl &> /dev/null
           sudo bash -c "ls dist/fdroid/repo/*.apk | tr '\n' '\0' | xargs -0 -n 1 basename > ./dist/fdroid/index.txt"
           sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
           echo "./dist/fdroid/index.txt:"
