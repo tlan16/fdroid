@@ -33,6 +33,16 @@ getReleaseUrls() {
 
 echo '' > urls.txt
 
+# https://github.com/gedoor/legado/releases/download/3.25/legado_app_3.25.apk
+url=$(getReleaseUrls "gedoor" "legado" 'https://.+legado_app.+\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
+# https://github.com/jing332/tts-server-android/releases/download/0.9_202307261647/TTS-Server-v0.9_202307261647_arm64-v8a.apk
+url=$(getReleaseUrls "jing332" "tts-server-android" 'https://.+TTS-Server.+_arm64-v8a\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
 # https://github.com/AdguardTeam/AdguardForAndroid/releases/download/v4.7/adguard_4.7.apk
 url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard_[0-9]\.[0-9]+.apk')
 echo "url: $url"
