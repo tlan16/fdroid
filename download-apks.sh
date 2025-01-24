@@ -43,8 +43,8 @@ url=$(getReleaseUrls "jing332" "tts-server-android" 'https://.+TTS-Server.+_arm6
 echo "url: $url"
 echo "$url" >> urls.txt
 
-# https://github.com/AdguardTeam/AdguardForAndroid/releases/download/v4.7/adguard_4.7.apk
-url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard_[0-9]\.[0-9]+.apk')
+# https://github.com/AdguardTeam/AdguardForAndroid/releases/download/v4.7.1/adguard_4.7.1.apk
+url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard_[0-9]\.[0-9]*\.[0-9]*\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
