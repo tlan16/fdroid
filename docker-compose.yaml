@@ -7,3 +7,4 @@ services:
       - FDROID_REPO=fdroid/repo
     volumes:
       - ./fdroid:/fdroid
+      - ./dist:/dist
