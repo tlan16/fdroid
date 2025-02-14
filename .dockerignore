@@ -13,3 +13,7 @@
 /urls.txt
 .venv/
 __pycache__/
+
+# Docker specifics
+.dockerignore
+docker-compose.yaml
