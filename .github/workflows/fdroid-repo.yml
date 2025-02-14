@@ -32,6 +32,7 @@ jobs:
           mkdir -p ./dist
           touch ./dist/apks.txt
           ./download-apks.sh
+          ./validate-apks.sh
           tree -h .
       - run: docker compose run --quiet-pull fdroid update --create-metadata
       - run: docker compose run --quiet-pull fdroid deploy -v

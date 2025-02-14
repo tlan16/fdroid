@@ -34,39 +34,39 @@ getReleaseUrls() {
 echo '' > urls.txt
 
 # https://github.com/gedoor/legado/releases/download/3.25/legado_app_3.25.apk
-#url=$(getReleaseUrls "gedoor" "legado" 'https://.+legado_app.+\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "gedoor" "legado" 'https://.+legado_app.+\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
 
 # https://github.com/jing332/tts-server-android/releases/download/0.9_202307261647/TTS-Server-v0.9_202307261647_arm64-v8a.apk
-#url=$(getReleaseUrls "jing332" "tts-server-android" 'https://.+TTS-Server.+_arm64-v8a\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "jing332" "tts-server-android" 'https://.+TTS-Server.+_arm64-v8a\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
 
 # https://github.com/AdguardTeam/AdguardForAndroid/releases/download/v4.7.1/adguard_4.7.1.apk
-#url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard_[0-9]\.[0-9]*\.[0-9]*\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "AdguardTeam" "AdguardForAndroid" 'https://.+adguard_[0-9]\.[0-9]*\.[0-9]*\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
 
 # https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-beta-arm64-v8a-anddea.apk
 url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'youtube-beta-arm64-v8a-anddea\.apk')
 echo "url: $url"
 echo "$url" >> urls.txt
 
-# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-music-beta-arm64-v8a-anddea.apk
-#url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'youtube-music-beta-arm64-v8a.+\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
+# https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-music-stable-arm64-v8a-anddea.apk
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'youtube-music-stable-arm64-v8a-anddea\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
 
 # https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/twitter-beta-piko.apk
-#url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'twitter-beta-piko\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
-#
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'twitter-beta-piko\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
 # https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/reddit-revanced-extended.apk
-#url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'reddit-revanced-extended\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'reddit-revanced-extended\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
 
 # https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/bilibili-BiliRoamingM.apk
 url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'bilibili-BiliRoamingM\.apk')
@@ -74,33 +74,33 @@ echo "url: $url"
 echo "$url" >> urls.txt
 
 # https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/fx-file-explorer-indrastorms.apk
-#url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'fx-file-explorer-indrastorms\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "FiorenMas" "Revanced-And-Revanced-Extended-Non-Root" 'fx-file-explorer-indrastorms\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
 
-#url="https://cdn.kuaiyuepu.com/app/android/kuaiyuepu.apk"
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url="https://cdn.kuaiyuepu.com/app/android/kuaiyuepu.apk"
+echo "url: $url"
+echo "$url" >> urls.txt
 
-#url=$(getReleaseUrls "vvb2060" "KeyAttestation" 'KeyAttestation-.+\.apk')
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "vvb2060" "KeyAttestation" 'KeyAttestation-.+\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
 
-#url=$(getReleaseUrls "AkaneTan" "Checker")
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "AkaneTan" "Checker")
+echo "url: $url"
+echo "$url" >> urls.txt
 
-#url="https://github.com/rushiranpise/detection/raw/main/Hunter_5.5.0.apk"
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url="https://github.com/rushiranpise/detection/raw/main/Hunter_5.5.0.apk"
+echo "url: $url"
+echo "$url" >> urls.txt
 
-#url="https://github.com/rushiranpise/detection/raw/main/MemoryDetector_2.1.0.apk"
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url="https://github.com/rushiranpise/detection/raw/main/MemoryDetector_2.1.0.apk"
+echo "url: $url"
+echo "$url" >> urls.txt
 
-#url=$(getReleaseUrls "RabehX" "Securify")
-#echo "url: $url"
-#echo "$url" >> urls.txt
+url=$(getReleaseUrls "RabehX" "Securify")
+echo "url: $url"
+echo "$url" >> urls.txt
 
 cat urls.txt
 
