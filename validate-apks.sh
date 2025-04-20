@@ -10,7 +10,7 @@ function try_validate_zip() {
   apk="$1"
   echo "Validating $apk"
   unzip -t -qq "$apk"
-  docker compose run --rm --remove-orphans --entrypoint 'uv' fdroid run androguard arsc "$apk" > /dev/null
+  docker compose run --quiet-pull --rm --remove-orphans --entrypoint 'uv' fdroid run androguard arsc "$apk" > /dev/null
 }
 
 for apk in ./repo/*.apk; do

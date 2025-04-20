@@ -108,7 +108,7 @@ rm -f ./fdroid/*.apk || true
 
 if [[ -n "$GITHUB_TOKEN" ]]; then
   githubAuthArg="-u tlan16:$GITHUB_TOKEN"
-  aria2c --check-certificate=false -i urls.txt -d ./fdroid/repo -j 10 -x 10
+  aria2c --console-log-level=error --check-certificate=false -i urls.txt -d ./fdroid/repo -j 10 -x 10
 else
-  aria2c --check-certificate=false --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10
+  aria2c --console-log-level=error --check-certificate=false --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10
 fi
