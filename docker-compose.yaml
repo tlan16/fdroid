@@ -1,0 +1,12 @@
+---
+services:
+  fdroid:
+    image: ghcr.io/tlan16/docker-executable-fdroidserver:latest
+    pull_policy: always
+    working_dir: /fdroid
+    platform: linux/amd64
+    environment:
+      - FDROID_REPO=fdroid/repo
+    volumes:
+      - ./fdroid:/fdroid
+      - ./dist:/dist

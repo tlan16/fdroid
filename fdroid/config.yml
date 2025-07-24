@@ -1,0 +1,11 @@
+# see https://gitlab.com/fdroid/fdroidserver/blob/2.1/examples/config.yml
+
+sdk_path: $ANDROID_HOME
+keystore: keystore.p12
+keystorepass: HKtDRMuahfDvhQDvEGo73ljlQFIdefZYnWG2z4u2DM0=
+keypass: HKtDRMuahfDvhQDvEGo73ljlQFIdefZYnWG2z4u2DM0=
+repo_keyalias: 168be2a2cf90
+keydname: CN=168be2a2cf90, OU=F-Droid
+local_copy_dir: /dist/fdroid
+repo_url: https://tlan16.github.io/fdroid/repo
+repo_name: Frank's F-Droid Repo

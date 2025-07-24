@@ -1,0 +1,20 @@
+/.idea/
+/fdroid/tmp/
+/dist/
+!/dist/.gitkeep
+/fdroid/repo
+!/fdroid/repo/icons/
+!/fdroid/repo/Evernote_8.13.3.apk
+/fdroid/metadata/
+
+# Except .gitkepp files
+!/fdroid/repo/.gitkeep
+
+.env
+/urls.txt
+.venv/
+__pycache__/
+
+# Docker specifics
+.dockerignore
+docker-compose.yaml

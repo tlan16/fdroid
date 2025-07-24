@@ -1,0 +1,60 @@
+name: Build and Publish
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: "${{github.repository}}-${{ github.ref_name }}"
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu
+    permissions:
+      contents: write
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: ansilove curl aria2
+      - uses: docker/bake-action@v6
+      - name: Download apks
+        run: |
+          mkdir -p ./dist
+          touch ./dist/apks.txt
+          ./download-apks.sh
+          ./validate-apks.sh
+          tree -h .
+      - run: docker compose run --quiet-pull fdroid update --create-metadata
+      - run: docker compose run --quiet-pull fdroid deploy -v
+      - name: Setup Pages Static Files
+        run: |
+          # Redirect
+          sudo cp ./static/redirect.html ./dist/fdroid/index.html
+          # Indexes
+          sudo bash -c "ls dist/fdroid/repo/*.apk | tr '\n' '\0' | xargs -0 -n 1 basename > ./dist/fdroid/index.txt"
+          sudo ansilove -b 9 -r -o ./dist/fdroid/index.png ./dist/fdroid/index.txt
+          echo "./dist/fdroid/index.txt:"
+          cat ./dist/fdroid/index.txt
+      - run: |
+          chmod -c -R +rX "_site/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist/fdroid'
+          retention-days: 1
+      - run: tree -a -h ./dist/fdroid
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - uses: gautamkrishnar/keepalive-workflow@2
