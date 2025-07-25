@@ -111,7 +111,7 @@ UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:143.0) Gecko/20100101 Firef
 
 if [[ -n "$GITHUB_TOKEN" ]]; then
   githubAuthArg="-u tlan16:$GITHUB_TOKEN"
-  aria2c --console-log-level=error --check-certificate=false -i urls.txt -d ./fdroid/repo -j 10 -x 10 --user-agent="${UA}" --referer=* --quiet
+  aria2c --console-log-level=error --check-certificate=false -i urls.txt -d ./fdroid/repo -j 10 -x 10 --user-agent="${UA}" --referer=* --quiet true --show-console-readout false --summary-interval 0
 else
-  aria2c --console-log-level=error --check-certificate=false --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10 --user-agent="${UA}" --referer=* --quiet
+  aria2c --console-log-level=error --check-certificate=false --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10 --user-agent="${UA}" --referer=* --quiet true --show-console-readout false --summary-interval 0
 fi
