@@ -2,7 +2,7 @@
 set -eo pipefail
 
 cd "$(dirname "$0")" || exit 1
-docker compose pull --quiet fdroid > /dev/null 2>&1 || true
+docker compose pull --quiet > /dev/null 2>&1 || true
 cd "$(dirname "$0")/fdroid" || exit 1
 
 function try_validate_zip() {
@@ -10,7 +10,6 @@ function try_validate_zip() {
   apk="$1"
   echo "Validating $apk"
   unzip -t -qq "$apk"
-  docker compose pull --quiet > /dev/null 2>&1 || true
   docker compose run --rm --remove-orphans --entrypoint 'uv' fdroid run androguard arsc "$apk" > /dev/null
 }
 
