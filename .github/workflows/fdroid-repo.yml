@@ -57,4 +57,3 @@ jobs:
       - run: tree -a -h ./dist/fdroid
       - id: deployment
         uses: actions/deploy-pages@v4
-      - uses: gautamkrishnar/keepalive-workflow@2
