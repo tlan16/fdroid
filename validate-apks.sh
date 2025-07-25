@@ -2,7 +2,7 @@
 set -eo pipefail
 
 cd "$(dirname "$0")" || exit 1
-docker compose pull fdroid
+docker compose pull --quiet fdroid > /dev/null 2>&1 || true
 cd "$(dirname "$0")/fdroid" || exit 1
 
 function try_validate_zip() {
