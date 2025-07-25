@@ -106,9 +106,12 @@ cat urls.txt
 
 rm -f ./fdroid/*.apk || true
 
+UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:143.0) Gecko/20100101 Firefox/143.0="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:143.0) Gecko/20100101 Firefox/143.0"'
+
+
 if [[ -n "$GITHUB_TOKEN" ]]; then
   githubAuthArg="-u tlan16:$GITHUB_TOKEN"
-  aria2c --console-log-level=error --check-certificate=false -i urls.txt -d ./fdroid/repo -j 10 -x 10
+  aria2c --console-log-level=error --check-certificate=false -i urls.txt -d ./fdroid/repo -j 10 -x 10 --user-agent="${UA}" --referer=* --quiet
 else
-  aria2c --console-log-level=error --check-certificate=false --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10
+  aria2c --console-log-level=error --check-certificate=false --http-user=tlan16 --http-passwd="$GITHUB_TOKEN" -i urls.txt -d ./fdroid/repo -j 10 -x 10 --user-agent="${UA}" --referer=* --quiet
 fi
