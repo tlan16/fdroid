@@ -33,6 +33,11 @@ getReleaseUrls() {
 
 echo '' > urls.txt
 
+# https://github.com/zly2006/zhihu-plus-plus/releases/download/0.10.5/zhihu%2B%2B.apk
+url=$(getReleaseUrls "zly2006" "zhihu-plus-plus" 'https://.+zhihu.+\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
 # https://github.com/gedoor/legado/releases/download/3.25/legado_app_3.25.apk
 url=$(getReleaseUrls "gedoor" "legado" 'https://.+legado_app.+\.apk')
 echo "url: $url"
