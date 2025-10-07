@@ -33,6 +33,11 @@ getReleaseUrls() {
 
 echo '' > urls.txt
 
+# https://github.com/WSTxda/MicroG-RE/releases/download/5.13/microg-release.apk
+url=$(getReleaseUrls "WSTxda" "MicroG-RE" 'https://.+microg.+\.apk')
+echo "url: $url"
+echo "$url" >> urls.txt
+
 # https://github.com/zly2006/zhihu-plus-plus/releases/download/0.10.5/zhihu%2B%2B.apk
 url=$(getReleaseUrls "zly2006" "zhihu-plus-plus" 'https://.+zhihu.+\.apk')
 echo "url: $url"
